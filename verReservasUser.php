@@ -1,20 +1,11 @@
-<DOCTYPE html>
 <link rel="stylesheet" href="Css/styles-tables.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<html>
 <?php
 // Establecer la conexión a la base de datos
 require "Modelo/conexionBasesDatos.php";
+require "Includes/verifyLogin.php";
+
 // Verificar si el usuario ha iniciado sesión
-session_start(); // Iniciar la sesión
-if (isset($_SESSION["id_usuario"])) {
-    // El usuario ha iniciado sesión, puedes acceder a sus datos de sesión
-    $usuario = $_SESSION["id_usuario"];
-} else {
-    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
-    header("Location: index.php");
-    exit();
-}
+$usuario = verifyLoginOrRedirect();
 
 // Mostrar el contenido de las tablas
     $table = "reserva_laboratorio";

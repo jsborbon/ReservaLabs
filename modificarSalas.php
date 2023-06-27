@@ -1,13 +1,8 @@
 <?php
 require "Modelo/conexionBasesDatos.php";
-
+require "Includes/verifyLogin.php"; 
 // Verificar si el usuario ha iniciado sesión
-session_start(); // Iniciar la sesión
-if (!isset($_SESSION["id_usuario"])) {
-    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
-    header("Location: index.php");
-    exit();
-}
+$usuario = verifyLoginOrRedirect();
 
 // Verificar si se ha enviado el formulario de edición
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
